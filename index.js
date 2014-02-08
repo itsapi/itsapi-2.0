@@ -1,39 +1,36 @@
-var express = require('express');
-var http = require('http');
-var app = express();
+// Modules
+
+var express = require('express'),
+    app = express(),
+    login = require('./pages/login'),
+    post = require('./pages/post'),
+    user = require('./pages/user'),
+    error = require('./pages/error');
+
+// Config
+
 var port = 6002;
 
-var loggedIn = require('./login').check();
-
-function cb (req, res, out, content_type) {
-    if (content_type == undefined) content_type = 'text/html'
-
-    res.writeHead(200, {'Content-Type': content_type});
-    res.end(out);
-}
-
+app.set('view engine', 'jade');
+app.set('views', __dirname + '/views');
+app.use(express.static(__dirname + '/public'));
 app.use(express.favicon());
 
-app.get('*', function (req, res, next) {
+app.all('*', function (req, res, next) {
     console.log('Request for', req.url, 'received');
     next();
-})
-.get('/', function (req, res) {
-    if (loggedIn) {
-        require('./feed').result(req, res, cb);
-    } else {
-        require('./login').result(req, res, cb);
-    }
-})
-.get('/post/:pid', function (req, res) {
-    require('./post').result(req, res, cb);
-})
-.get('/(css|js|fonts)/:file', function (req, res) {
-    require('./file').result(req, res, cb);
-})
-.get('/:user', function (req, res) {
-    require('./user').result(req, res, cb);
 });
+
+// Routing
+
+app.get('/', login.index);
+app.get('/post/:pid', post.view);
+app.get('/:user', user.view);
+
+// Errors
+
+app.use(error.code_500);
+app.use(error.code_404);
 
 app.listen(port);
 console.log('Server started on port', port);
