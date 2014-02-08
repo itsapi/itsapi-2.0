@@ -1,6 +1,3 @@
-// var server = require('./server');
-// var router = require('./router');
-
 var express = require('express');
 var http = require('http');
 var app = express();
@@ -16,31 +13,25 @@ function cb (req, res, out, content_type) {
 }
 
 app.get('*', function (req, res, next) {
-    console.log('Request for ' + req.url + ' received');
+    console.log('Request for', req.url, 'received');
     next();
 })
-app.get('/', function (req, res) {
+.get('/', function (req, res) {
     if (loggedIn) {
         require('./feed').result(req, res, cb);
     } else {
         require('./login').result(req, res, cb);
     }
-});
-app.get('/post', function (req, res) {
+})
+.get('/post/:pid', function (req, res) {
     require('./post').result(req, res, cb);
-});
-app.get('/css', function (req, res) {
-    require('./file').result(req, res, cb, req.url);
-});
-app.get('/js', function (req, res) {
-    require('./file').result(req, res, cb, req.url);
-});
-app.get('/fonts', function (req, res) {
-    require('./file').result(req, res, cb, req.url);
-});
-app.get('*', function (req, res) {
-    require('./user').result(req, res, cb, req.url);
+})
+.get('/(css|js|fonts)/:file', function (req, res) {
+    require('./file').result(req, res, cb);
+})
+.get('/:user', function (req, res) {
+    require('./user').result(req, res, cb);
 });
 
-app.listen(port)
+app.listen(port);
 console.log('Server started on port', port);

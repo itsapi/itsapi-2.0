@@ -2,7 +2,7 @@ var templates = require('./templates');
 var htmlutils = require('./htmlutils');
 
 function result (req, res, cb) {
-    console.log('Routing to a post')
+    console.log('Routing to post:', req.params.pid);
 
     templates.template(
         req, res, cb,

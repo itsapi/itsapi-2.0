@@ -1,10 +1,10 @@
 var templates = require('./templates');
 var htmlutils = require('./htmlutils');
 
-function result (req, res, cb, path) {
-    username = path.slice(1) // TODO: Needs doing properly, temporary hack.
+function result (req, res, cb) {
+    username = req.params.user;
 
-    console.log('Routing to user: ' + username)
+    console.log('Routing to user:', username);
 
     templates.template(
         req, res, cb,
