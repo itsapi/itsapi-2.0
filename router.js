@@ -1,15 +1,20 @@
 function route (path, cb) {
-    switch (path) {
-        case '/':
+    switch (path.split('/')[1]) {
+        case '':
             if (false) {
-                require('./feed').result(cb)
+                require('./feed').result(cb);
             } else {
-                require('./login').result(cb)
+                require('./login').result(cb);
             }
             break;
 
-        case '/post':
+        case 'post':
             require('./post').result(cb);
+            break;
+
+        case 'css':
+        case 'js':
+            require('./file').result(path, cb);
             break;
 
         default:

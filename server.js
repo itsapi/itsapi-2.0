@@ -7,12 +7,15 @@ function start (route) {
         var path = url.parse(req.url).pathname;
         path = path.replace(/^\/+/, '/'); // Replace duplicate slashes
         if (path != '/') path = path.replace(/\/+$/, ''); // Remove trailing slash
-        
+
         if (path != '/favicon.ico') {
             console.log('Request for ' + path + ' received');
 
-            route(path, function (out) {
-                res.writeHead(200, {'Content-Type': 'text/html'});
+            route(path, function (out, content_type) {
+                if (content_type == undefined) {
+                    content_type = 'text/html'
+                }
+                res.writeHead(200, {'Content-Type': content_type});
                 res.end(out);
             });
         }

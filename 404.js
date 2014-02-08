@@ -1,5 +1,5 @@
-var templates = require('../templates');
-var htmlutils = require('../htmlutils');
+var templates = require('./templates');
+var htmlutils = require('./htmlutils');
 
 function result (cb) {
 	templates.template(
@@ -7,7 +7,7 @@ function result (cb) {
 		 'heading': 'Error: 404',
 		 'content': htmlutils.wrap('Unable to locate the requested page', 'p')
 		},
-		'default.html', 
+		'default.html',
 		cb
 	);
 }
