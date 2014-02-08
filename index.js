@@ -13,6 +13,7 @@ var port = 6002;
 
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views');
+app.locals.pretty = true;
 app.use(express.static(__dirname + '/public'));
 app.use(express.favicon());
 
