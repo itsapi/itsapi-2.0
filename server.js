@@ -4,6 +4,7 @@ var port = 6002;
 
 function start (route) {
     http.createServer(function (req, res) {
+
         var path = url.parse(req.url).pathname;
         path = path.replace(/^\/+/, '/'); // Replace duplicate slashes
         if (path != '/') path = path.replace(/\/+$/, ''); // Remove trailing slash
@@ -18,8 +19,7 @@ function start (route) {
                 res.end(out);
             });
         }
-    })
-    .listen(port);
+    }).listen(port);
     console.log('Server started on port', port);
 }
 
