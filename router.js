@@ -1,4 +1,5 @@
 function route (path, cb) {
+    var loggedIn = require('./login').check();
     switch (path.split('/')[1]) {
         case '':
             if (false) {

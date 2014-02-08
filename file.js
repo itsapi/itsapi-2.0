@@ -3,7 +3,7 @@ var file_path = require('path')
 
 function result (path, cb) {
     path = '.' + path
-    fs.readFile(path, function(err, file) {
+    fs.readFile(path, function (err, file) {
         if(err) {
             console.log(path + ' - 404')
             require('./404.js').result(cb)
