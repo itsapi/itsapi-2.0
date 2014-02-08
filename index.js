@@ -12,6 +12,8 @@ function cb (req, res, out, content_type) {
     res.end(out);
 }
 
+app.use(express.favicon());
+
 app.get('*', function (req, res, next) {
     console.log('Request for', req.url, 'received');
     next();
