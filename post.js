@@ -1,15 +1,15 @@
 var templates = require('./templates');
 var htmlutils = require('./htmlutils');
 
-function result (cb) {
+function result (req, res, cb) {
     console.log('Routing to a post')
 
     templates.template(
+        req, res, cb,
         {'post_title': 'A post',
          'post': htmlutils.wrap('Here is a post...', 'p')
         },
-        'post.html',
-        cb
+        'post.html'
     );
 }
 

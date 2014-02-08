@@ -1,8 +1,9 @@
 var fs = require("fs");
 
-function template (data, template, cb) {
+function template (req, res, cb, data, template) {
 	fs.readFile('./templates/'+template, 'utf-8', function (err, html) {
 		cb(
+			req, res,
 			html.replace(/{([^}]+)}/g, function (match) {
 
 				match = match.substring(1, match.length-1);

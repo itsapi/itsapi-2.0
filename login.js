@@ -2,14 +2,14 @@ var templates = require('./templates');
 var htmlutils = require('./htmlutils');
 
 function check () {
-    return true;
+    return false;
 }
 
-function result (cb) {
+function result (req, res, cb) {
     templates.template(
+        req, res, cb,
         {},
-        'login.html',
-        cb
+        'login.html'
     );
 }
 
