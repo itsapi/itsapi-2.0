@@ -1,4 +1,4 @@
-function route (path, cb) {
+function route (root, path, cb) {
     switch (path.split('/')[1]) {
         case '':
             if (false) {
@@ -14,7 +14,7 @@ function route (path, cb) {
 
         case 'css':
         case 'js':
-            require('./file').result(path, cb);
+            require('./file').result(root, path, cb);
             break;
 
         default:
