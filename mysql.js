@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 
-function query (req, res, cb, sql) {
+exports.query = function (req, res, cb, sql) {
     mysql.createConnection({ 
         user: "{itsapi-2.0_mysqlUser}",
         password: "{itsapi-2.0_mysqlPass}",
@@ -8,5 +8,3 @@ function query (req, res, cb, sql) {
     })
     .query(req, res, cb, sql);
 };
-
-exports.query = query;
