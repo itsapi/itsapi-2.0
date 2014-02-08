@@ -13,7 +13,7 @@ function route (path, cb) {
             break;
 
         default:
-            require('./user').result(cb);
+            require('./user').result(path, cb);
     }
     return;
 }

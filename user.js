@@ -1,9 +1,11 @@
 var templates = require('./templates');
 var htmlutils = require('./htmlutils');
 
-function result (cb) {
+function result (path, cb) {
+    username = path.slice(1) // TODO: Needs doing properly, temporary hack.
+
     templates.template(
-        {'username': 'Username',
+        {'username': username,
          'posts': htmlutils.wrap('Here are some posts...', 'p')
         },
         'user.html',
