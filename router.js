@@ -1,15 +1,19 @@
 function route (path, cb) {
     switch (path) {
         case '/':
-            require('./pages/index').result(cb);
+            if (logged_in) {
+                require('./feed').result(cb)
+            } else {
+                require('./login').result(cb)
+            }
             break;
 
-        case '/users':
-            require('./pages/users').result(cb);
+        case '/post':
+            require('./post').result(cb);
             break;
 
         default:
-            require('./pages/404').result(cb);
+            require('./user').result(cb);
     }
     return;
 }
