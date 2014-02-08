@@ -1,8 +1,8 @@
 var fs = require('fs')
 var file_path = require('path')
 
-function result (root, path, cb) {
-    path = root + path
+function result (path, cb) {
+    path = path
     fs.readFile(path, function(err, file) {
         if(err) {
             require('./404.js').result(cb)

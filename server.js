@@ -4,7 +4,6 @@ var port = 6002;
 
 function start (route) {
     http.createServer(function (req, res) {
-        var root = './itsapi-2.0'
         var path = url.parse(req.url).pathname;
         path = path.replace(/^\/+/, '/'); // Replace duplicate slashes
         if (path != '/') path = path.replace(/\/+$/, ''); // Remove trailing slash
@@ -12,7 +11,7 @@ function start (route) {
         if (path != '/favicon.ico') {
             console.log('Request for ' + path + ' received');
 
-            route(root, path, function (out, content_type) {
+            route(path, function (out, content_type) {
                 if (content_type == undefined) {
                     content_type = 'text/html'
                 }
