@@ -12,9 +12,8 @@ function start (route) {
             console.log('Request for ' + path + ' received');
 
             route(path, function (out, content_type) {
-                if (content_type == undefined) {
-                    content_type = 'text/html'
-                }
+                if (content_type == undefined) content_type = 'text/html'
+
                 res.writeHead(200, {'Content-Type': content_type});
                 res.end(out);
             });

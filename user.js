@@ -4,6 +4,8 @@ var htmlutils = require('./htmlutils');
 function result (path, cb) {
     username = path.slice(1) // TODO: Needs doing properly, temporary hack.
 
+    console.log('Routing to user: ' + username)
+
     templates.template(
         {'username': username,
          'posts': htmlutils.wrap('Here are some posts...', 'p')
