@@ -1,7 +1,7 @@
 function route (path, cb) {
     switch (path) {
         case '/':
-            if (true) {
+            if (false) {
                 require('./feed').result(cb)
             } else {
                 require('./login').result(cb)
