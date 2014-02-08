@@ -1,0 +1,27 @@
+extends layout
+
+block title
+
+    title= 'Log In / Sign Up'
+
+block styles
+
+    link(href="/css/login.css", rel="stylesheet")
+
+block content
+
+    form.form-signin(role='form', method='post')
+        h2.form-signin-heading Please sign in
+        input.form-control(type='username', placeholder='Username', required='required', autofocus='autofocus')
+        input.form-control(type='password', placeholder='Password', required='required')
+        label.checkbox
+          input(type='checkbox', value='remember-me')
+          | Remember me
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
+      form.form-signin(role='form', method='post')
+        h2.form-signin-heading Or sign up
+        input.form-control(type='username', placeholder='Username', required='required')
+        input.form-control(type='email', placeholder='Email address', required='required')
+        input.form-control(type='password', placeholder='Password', required='required')
+        input.form-control(type='password-again', placeholder='Password again', required='required')
+        button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
