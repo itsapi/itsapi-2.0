@@ -24,6 +24,7 @@ app.all('*', function (req, res, next) {
 
 // Routing
 
+app.post('/', login.login);
 app.get('/', login.index);
 app.get('/post/:pid', post.view);
 app.get('/:user', user.view);
