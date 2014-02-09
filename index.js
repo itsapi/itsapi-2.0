@@ -24,8 +24,13 @@ app.all('*', function (req, res, next) {
 
 // Routing
 
-app.post('/', login.login);
 app.get('/', login.index);
+app.get('/login', login.index)
+app.get('/signup', login.index)
+
+app.post('/login', login.login);
+app.post('/signup', login.signup);
+
 app.get('/post/:pid', post.view);
 app.get('/:user', user.view);
 
