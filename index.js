@@ -7,15 +7,22 @@ var express = require('express'),
     user = require('./pages/user'),
     error = require('./pages/error');
 
+var everyauth = require('everyauth')
 // Config
 
 var port = 6002;
 
-app.set('view engine', 'jade');
-app.set('views', __dirname + '/views');
+app.set('view engine', 'jade')
+   .set('views', __dirname + '/views');
 app.locals.pretty = true;
-app.use(express.static(__dirname + '/public'));
-app.use(express.favicon());
+
+app.use(express.static(__dirname + '/public'))
+   .use(express.favicon())
+   .use(express.json())
+   .use(express.urlencoded())
+   .use(express.cookieParser())
+   .use(express.session({secret: 'whodunnit'}))
+   .use(everyauth.middleware())
 
 app.all('*', function (req, res, next) {
     console.log('Request for', req.url, 'received');
@@ -24,20 +31,13 @@ app.all('*', function (req, res, next) {
 
 // Routing
 
-app.get('/', login.index);
-app.get('/login', login.index)
-app.get('/signup', login.index)
-
-app.post('/login', login.login);
-app.post('/signup', login.signup);
-
-app.get('/post/:pid', post.view);
-app.get('/:user', user.view);
+app.get('/post/:pid', post.view)
+   .get('/:user', user.view);
 
 // Errors
 
-app.use(error.code_500);
-app.use(error.code_404);
+app.use(error.code_500)
+   .use(error.code_404);
 
 app.listen(port);
 console.log('Server started on port', port);

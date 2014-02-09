@@ -21,8 +21,10 @@ block content
 
     form.form-signin(role='form', method='post', action='/signup')
         h2.form-signin-heading Or sign up
+        input.form-control(type='text', name='first_name', placeholder='First name', required='required')
+        input.form-control(type='text', name='last_name', placeholder='Last name', required='required')
         input.form-control(type='text', name='username', placeholder='Username', required='required')
         input.form-control(type='email', name='email', placeholder='Email address', required='required')
         input.form-control(type='password', name='password', placeholder='Password', required='required')
-        input.form-control(type='password', name='password-again', placeholder='Password again', required='required')
+        input.form-control(type='password', name='password_again', placeholder='Password again', required='required')
         button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign in
