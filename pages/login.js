@@ -59,7 +59,7 @@ everyauth.password
     .loginFormFieldName('username')
     .passwordFormFieldName('password')
     .getLoginPath('/')
-    .postLoginPath('/login')
+    .postLoginPath('/')
     .loginView('login.jade')
     .authenticate(checkLogin)
     .loginSuccessRedirect('/')
@@ -69,7 +69,7 @@ everyauth.password
     // See './example/views/login.jade'
 
     .getRegisterPath('/') // Uri path to the registration page
-    .postRegisterPath('/signup') // The Uri path that your registration form POSTs to
+    .postRegisterPath('/') // The Uri path that your registration form POSTs to
     .registerView('login.jade')
     .extractExtraRegistrationParams( function (req) {
         return {
