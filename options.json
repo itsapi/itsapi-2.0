@@ -1,6 +1,4 @@
 {
-    "replace-keys": true,
-    "grunt": false,
     "node": true,
     "output": "/var/node/itsapi"
 }
